@@ -10,10 +10,10 @@ const server = express();
 server.use(cors());
 server.use(helmet());
 
+server.use(express.json());
+
 server.use("/auth", authRouter);
 server.use("/users", usersRouter);
-
-server.use(express.json());
 
 server.get("/", (req, res) => {
 	res.send(`<h2>Auth 1 Project!</h2>`);

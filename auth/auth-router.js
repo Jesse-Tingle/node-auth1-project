@@ -5,14 +5,15 @@ const router = express.Router();
 
 router.post("/register", async (req, res, next) => {
 	try {
-		// const { username } = req.body;
-		// const user = await Users.findBy({ username }).first();
+		const { username } = req.body;
+		const user = await Users.findBy({ username }).first();
 
-		// if (user) {
-		// 	return res.status(409).json({
-		// 		message: "Username is already taken"
-		// 	});
-		// }
+		if (user) {
+			return res.status(409).json({
+				message: "Username is already taken"
+			});
+		}
+		console.log("req.body: ", req.body);
 
 		res.status(201).json(await Users.add(req.body));
 	} catch (err) {
