@@ -24,11 +24,14 @@ function restrict() {
 			// 	return res.status(401).json(authError);
 			// }
 
-			const { authorization } = req.headers;
-			if (!sessions[authorization]) {
+			const { cookie } = req.headers;
+			if (!cookie) {
 				return res.status(401).json(authError);
 			}
-
+			const authToken = cookie.replace("token=", "");
+			if (!sessions[authToken]) {
+				return res.status(401).json(authError);
+			}
 			next();
 		} catch (error) {
 			next(error);
