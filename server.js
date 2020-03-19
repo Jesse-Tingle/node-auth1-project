@@ -17,7 +17,10 @@ server.use(
 		name: "token",
 		resave: false,
 		saveUninitialized: false,
-		secret: "keep it secret, keep it safe"
+		secret: "keep it secret, keep it safe",
+		cookie: {
+			maxAge: 15 * 1000
+		}
 	})
 );
 
