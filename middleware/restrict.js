@@ -24,14 +24,19 @@ function restrict() {
 			// 	return res.status(401).json(authError);
 			// }
 
-			const { cookie } = req.headers;
-			if (!cookie) {
+			// const { cookie } = req.headers;
+			// if (!cookie) {
+			// 	return res.status(401).json(authError);
+			// }
+			// const authToken = cookie.replace("token=", "");
+			// if (!sessions[authToken]) {
+			// 	return res.status(401).json(authError);
+			// }
+
+			if (!req.session || !req.session.user) {
 				return res.status(401).json(authError);
 			}
-			const authToken = cookie.replace("token=", "");
-			if (!sessions[authToken]) {
-				return res.status(401).json(authError);
-			}
+
 			next();
 		} catch (error) {
 			next(error);
