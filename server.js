@@ -19,7 +19,7 @@ server.use(
 		name: "token",
 		resave: false,
 		saveUninitialized: false,
-		secret: "keep it secret, keep it safe",
+		secret: process.env.COOKIE_SECRET || "secret",
 		cookie: {
 			httpOnly: true
 			// maxAge: 15 * 1000
